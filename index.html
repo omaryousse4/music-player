@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+  <meta name="theme-color" content="#111111" id="theme-color">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="icon" href="/assets/icons/icon-192.png">
+  <title>مشغل الموسيقى</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div id="app" class="app">
+    <header class="app-header">
+      <div class="brand">
+        <span class="logo">♪</span>
+        <span class="title">مشغل الموسيقى</span>
+      </div>
+      <div class="actions">
+        <button id="themeToggle" class="btn" aria-label="تبديل الوضع">🌓</button>
+        <button id="fullscreenBtn" class="btn" aria-label="ملء الشاشة">⤢</button>
+        <button id="installBtn" class="btn hidden" aria-label="تثبيت التطبيق">⬇️</button>
+      </div>
+    </header>
+    <main class="main">
+      <aside class="library">
+        <div class="library-header">
+          <h2>المكتبة</h2>
+          <div class="library-actions">
+            <label class="file-picker btn">
+              إضافة ملفات
+              <input id="filePicker" type="file" accept="audio/mpeg,audio/mp3" multiple hidden>
+            </label>
+            <button id="refreshBtn" class="btn">تحديث</button>
+          </div>
+        </div>
+        <ul id="playlist" class="playlist" role="list"></ul>
+        <div class="empty-hint" id="emptyHint">ضع ملفات MP3 داخل مجلد songs/ أو استخدم "إضافة ملفات".</div>
+      </aside>
+      <section class="player">
+        <div class="cover-wrap">
+          <img id="cover" class="cover" alt="غلاف الألبوم" src="" />
+        </div>
+        <div class="track-meta">
+          <div id="title" class="title">—</div>
+          <div id="artist" class="artist">—</div>
+        </div>
+        <div class="controls">
+          <button id="prevBtn" class="btn">⏮</button>
+          <button id="playPauseBtn" class="btn btn-primary">▶️</button>
+          <button id="nextBtn" class="btn">⏭</button>
+          <button id="shuffleBtn" class="btn" title="عشوائي">🔀</button>
+          <button id="repeatBtn" class="btn" title="تكرار">🔁</button>
+        </div>
+        <div class="progress-wrap">
+          <span id="currentTime" class="time">0:00</span>
+          <input id="seek" type="range" min="0" max="1000" value="0" step="1">
+          <span id="duration" class="time">0:00</span>
+        </div>
+        <div class="volume-wrap">
+          <span>🔊</span>
+          <input id="volume" type="range" min="0" max="1" step="0.01">
+        </div>
+        <audio id="audio" preload="metadata" crossorigin="anonymous"></audio>
+      </section>
+      <aside class="lyrics" id="lyricsPanel" aria-label="كلمات الأغنية">
+        <div class="lyrics-header">
+          <h2>الكلمات</h2>
+          <button id="lyricsToggle" class="btn">إظهار/إخفاء</button>
+        </div>
+        <div id="lyrics" class="lyrics-content"></div>
+      </aside>
+    </main>
+    <footer class="app-footer">
+      <span>وضع عدم الاتصال مفعل تلقائياً عبر Service Worker</span>
+    </footer>
+  </div>
+  <script src="/script.js" type="module"></script>
+</body>
+</html>
